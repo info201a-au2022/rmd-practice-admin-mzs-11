@@ -1,21 +1,23 @@
 ---
-title: "Example Covid Report"
-author: "INFO-201: Class Demo"
-date: "2/7/2022"
+title: "X10 Example Covid Report"
+author: "INFO-201: Max Stewart"
+date: "11/10/2022"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 source("../source/analysis.R")
+
+nearest_date <- national %>% 
+  filter(date == max(date, na.rm = TRUE)) %>% 
+  pull(date)
+
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Covid Report
-I write a paragraph here. I will highlight that the total number of US cases is `r get_total_cases()`. And, the total number of US deaths is `r get_total_deaths()`. 
+This is Max's example paragraph. You can see the cumulative Covid cases in the US has been increasing rapidly in 2022, only recently beginning to plateu. The total number of cumulative cases is `r get_total_cases()` and the total number of US deaths is `r get_total_deaths()` as of `r nearest_date`. 
 
-(**Note**: Why are there no commas in the *total number of US deaths* ? Can you change `analysis.R` file so that the number is commented with commas?)
-
-I also want to show the chart:
 ``` {r echo=FALSE}
 cases_plot
 ```
